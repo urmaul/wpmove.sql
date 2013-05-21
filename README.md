@@ -1,4 +1,3 @@
-wpmove.sql
-==========
+# wpmove
 
-SQL query for moving Wordpress site to another domain/
+SQL query for moving Wordpress site to another domain.
