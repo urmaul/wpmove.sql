@@ -1,0 +1,27 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<form method="GET">
+	<label for="old">Old Domain</label>
+	<input name="old" id="old" placeholder="http://www.old-domain.com" /><br/>
+	<label for="new">New Domain</label>
+	<input name="new" id="new" placeholder="http://www.new-domain.com" /><br/>
+	<input type="submit" />
+</form>
+
+<pre></pre>
+
+<script>
+	$('form') .submit(function() {
+		$.ajax({
+			url: 'move.sql'
+			cache: true,
+			success: function(response) {
+				var text = response
+					.split('http://www.old-domain.com') .join($('#old') .val())
+					.split('http://www.new-domain.com') .join($('#new') .val());
+				
+				$('pre') .text(text);
+			}
+		});
+	});
+</script>
