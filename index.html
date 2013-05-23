@@ -1,31 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<title>Wordpress DB migration SQL query generator</title>
+	<meta charset="utf-8" />
+</head>
+<body>
 
-<form>
-	<label for="old">Old Domain</label>
-	<input name="old" id="old" placeholder="http://www.old-domain.com" /><br/>
-	<label for="new">New Domain</label>
-	<input name="new" id="new" placeholder="http://www.new-domain.com" /><br/>
-	<input type="submit" />
-</form>
+	<form>
+		<label for="old">Old Domain</label>
+		<input name="old" id="old" placeholder="http://www.old-domain.com" /><br/>
+		<label for="new">New Domain</label>
+		<input name="new" id="new" placeholder="http://www.new-domain.com" /><br/>
+		<input type="submit" />
+	</form>
 
-<pre></pre>
+	<pre></pre>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script>
-	$(function() {
-		$('form') .submit(function() {
-			$.ajax({
-				url: 'move.sql',
-				cache: true,
-				success: function(response) {
-					var text = response
-						.split('http://www.old-domain.com') .join($('#old') .val())
-						.split('http://www.new-domain.com') .join($('#new') .val());
-					
-					$('pre') .text(text);
-				}
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		$(function() {
+			$('form') .submit(function() {
+				$.ajax({
+					url: 'move.sql',
+					cache: true,
+					success: function(response) {
+						var text = response
+							.split('http://www.old-domain.com') .join($('#old') .val())
+							.split('http://www.new-domain.com') .join($('#new') .val());
+						
+						$('pre') .text(text);
+					}
+				});
+				
+				return false;
 			});
-			
-			return false;
 		});
-	})
-</script>
+	</script>
+
+</body>
+</html>
